@@ -1,0 +1,41 @@
+void Color() {
+  fill(white);
+  rect(rectX, rectY, rectWidth, rectHeight);
+  fill(red);
+  rect(rect2X, rect2Y, rect2Width, rect2Height);
+  fill(orange);
+  rect(rect3X, rect3Y, rect3Width, rect3Height);
+  fill(yellow);
+  rect(rect4X, rect4Y, rect4Width, rect4Height);
+  fill(green);
+  rect(rect5X, rect5Y, rect5Width, rect5Height);
+  fill(cyan);
+  rect(rect6X, rect6Y, rect6Width, rect6Height);
+  fill(blue);
+  rect(rect7X, rect7Y, rect7Width, rect7Height);
+  fill(purple);
+  rect(rect8X, rect8Y, rect8Width, rect8Height);
+  fill(black2);
+  rect(rect9X, rect9Y, rect9Width, rect9Height);
+  fill(white);
+  rect(rect10X, rect10Y, rect10Width, rect10Height);
+  noFill();
+  ellipse(ellipseX, ellipseY, ellipseWidth, ellipseHeight);
+  ellipse(ellipse2X, ellipse2Y, ellipse2Width, ellipse2Height);
+  fill(black);
+  triangle(triX1, triY1, triX2, triY2, triX3, triY3);
+  triangle(tri2X1, tri2Y1, tri2X2, tri2Y2, tri2X3, tri2Y3);
+  noFill();
+  noStroke();
+  rect(rect18X, rect18Y, rect18Width, rect18Height);
+  rect(rect19X, rect19Y, rect19Width, rect19Height);
+  stroke(1);
+  //
+  titleFont = createFont ("Harrington", 55);
+  rect(width*0.5/40, height*0.15/10, width*6/40, height*1/16);
+  fill(black2); 
+  textAlign (CENTER, CENTER); 
+  textFont(titleFont, 30);
+  text(title2, width*0.5/40, height*0.15/10, width*6/40, height*1/16);
+  fill(255);
+}
