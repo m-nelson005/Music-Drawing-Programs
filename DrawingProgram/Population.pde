@@ -9,6 +9,11 @@ void Population () {
   clearDrawingSurfaceWidth = width*20.72/32;
   clearDrawingSurfaceHeight = height*25.57/32;
   //
+  playButtonX = width*7.25/40;
+  playButtonY = height*8.9/10;
+  playButtonWidth = width*6/40;
+  playButtonHeight = height*1.25/16;
+  //
   rectX = width*0;
   rectY = height*0;
   rectWidth = width*0.7/4;
@@ -24,8 +29,8 @@ void Population () {
   rect20Width = width*2.6/4;
   rect20Height = height*0.8/4;
   //
-  
-  
+
+
   //
   rect2X = width*0.5/40;
   rect2Y = height*1/10;
@@ -72,16 +77,16 @@ void Population () {
   rect10Width = width*6/40;
   rect10Height = height*1/16;
   //
-   
-  
+
+
   //
   rect11X = width*2/40;
   rect11Y = height*0.15/10;
   rect11Width = width*6/40;
   rect11Height = height*1.25/16;
   //
-  
-  
+
+
   //
   rect12X = width*33.5/40;
   rect12Y = height*1.7/10;
@@ -128,8 +133,8 @@ void Population () {
   rect21Width = width*6/40;
   rect21Height = height*7/40;
   //
-  
-  
+
+
   //
   ellipse3X = width*7.3/8;
   ellipse3Y = height*2.1/16;
@@ -156,4 +161,23 @@ void Population () {
   ellipse7Width = width*10.4/100;
   ellipse7Height = height*15.5/100;
   //
+  
+  //
+  triX1 = width*8.2/40;
+  triY1 = height*9/10;
+  triX2 = width*8.2/40;
+  triY2 = height*9.6/10;
+  triX3 = width*9.75/40;
+  triY3 = height*9.3/10;
+  //
+  rect22X = width*12/40;
+  rect22Y = height*9/10;
+  rect22Width = width*0.5/40;
+  rect22Height = height*2.4/40;
+  //
+  rect23X = width*11/40;
+  rect23Y = height*9/10;
+  rect23Width = width*0.5/40;
+  rect23Height = height*2.4/40;
+  
 }

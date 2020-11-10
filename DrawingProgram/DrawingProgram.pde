@@ -1,4 +1,16 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 //Global Variables
+Minim minim;
+int numberOfSongs = 1;
+AudioPlayer[] song = new AudioPlayer[numberOfSongs];
+AudioMetaData[] songMetaData = new AudioMetaData[numberOfSongs];
+int currentSong = 0;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float clearDrawingSurfaceX, clearDrawingSurfaceY, clearDrawingSurfaceWidth, clearDrawingSurfaceHeight;
 float rectX, rectY, rectWidth, rectHeight;
@@ -23,6 +35,8 @@ float rect18X, rect18Y, rect18Width, rect18Height;
 float rect19X, rect19Y, rect19Width, rect19Height;
 float rect20X, rect20Y, rect20Width, rect20Height;
 float rect21X, rect21Y, rect21Width, rect21Height;
+float rect22X, rect22Y, rect22Width, rect22Height;
+float rect23X, rect23Y, rect23Width, rect23Height;
 float ellipseX, ellipseY, ellipseWidth, ellipseHeight;
 float ellipse2X, ellipse2Y, ellipse2Width, ellipse2Height;
 float ellipse3X, ellipse3Y, ellipse3Width, ellipse3Height;
@@ -33,7 +47,6 @@ float ellipse7X, ellipse7Y, ellipse7Width, ellipse7Height;
 float ellipse8X, ellipse8Y, ellipse8Width, ellipse8Height;
 float drawingDiameter;
 float triX1, triY1, triX2, triY2, triX3, triY3;
-float tri2X1, tri2Y1, tri2X2, tri2Y2, tri2X3, tri2Y3;
 Boolean draw=false;
 Boolean Picture1 = false, Picture2 = false;
 color ink, black = #000000;
@@ -69,7 +82,7 @@ float image4StartWidth, image4StartHeight, image4Width, image4Height;
 float image4WidthRatio;
 float image4HeightRatio;
 
-
+float playButtonX, playButtonY, playButtonWidth, playButtonHeight;
 
 void setup() {
   size(1000, 700);
@@ -97,10 +110,46 @@ void setup() {
   println("Start of Console");
   titleFont = createFont ("Harrington", 55);
   //
+  minim = new Minim(this);
+  song[0] = minim.loadFile("Yu-City Kamata - Dan Bodan.mp3");
+  //
+  for (int i=0; i<song.length; i++) {
+    songMetaData[i] = song[i].getMetaData();
+  }
+  //
+  println("Start of Console");
+  println("Click the Canvas to Finish Starting this App");
+  println("Press P to Play and Pause");
+  println("Press S to Stop");
+  println("Press L to loop the song");
+  println("Press F to fast forward");
+  println("Press R to fast rewind");
+  //Verifying Meta Data
+  //Always Available
+  println("\n\nVerifying MetaData");
+  println( "File Name:", songMetaData[currentSong].fileName() );
+  println( "Song Length (in milliseconds):", songMetaData[currentSong].length() );
+  println( "Song Length (in seconds):", songMetaData[currentSong].length()/1000 );
+  println( "Song Length (in minutes & seconds):", (songMetaData[currentSong].length()/1000)/60, "minutes", (songMetaData[currentSong].length()/1000)-((songMetaData[currentSong].length()/1000)/60 * 60), "seconds");
+  println( "Title:", songMetaData[currentSong].title() );
+  println( "Author:", songMetaData[currentSong].author() );
+  println( "Composer:", songMetaData[currentSong].composer() );
+  println( "Orchestra:", songMetaData[currentSong].orchestra() );
+  println( "Album:", songMetaData[currentSong].album() );
+  println( "Disc:", songMetaData[currentSong].disc() );
+  println( "Publisher:", songMetaData[currentSong].publisher() );
+  println( "Date Release:", songMetaData[currentSong].date() );
+  println( "Copyright:", songMetaData[currentSong].copyright() );
+  println( "Comment:", songMetaData[currentSong].comment() );
+  println( "Lyrics:", songMetaData[currentSong].lyrics() );
+  println( "Track:", songMetaData[currentSong].track() );
+  println( "Genre:", songMetaData[currentSong].genre() );
+  println( "Encoded:", songMetaData[currentSong].encoded() ); //How a computer reads the file
+  
 }
 
 void draw() {
-  
+
   //
   if (draw == true) {
     fill(ink);
@@ -116,6 +165,12 @@ void draw() {
   Color();
   Brush();
   quitButtonDraw();
+  //
+  rect(playButtonX, playButtonY, playButtonWidth, playButtonHeight);
+  fill(black);
+  triangle(triX1, triY1, triX2, triY2, triX3, triY3);
+  rect(rect22X, rect22Y, rect22Width, rect22Height);
+  rect(rect23X, rect23Y, rect23Width, rect23Height);
   //Picture1();
   //
 }
@@ -188,10 +243,15 @@ void mousePressed() {
   //
   if (mouseX>rect15X && mouseX<rect15X+rect15Width && mouseY>rect15Y && mouseY<rect15Y+rect15Height) {
     drawingDiameter = width*10.4/100;
+
+    //
+
+    
+    //
   }
-  
+
   //
-  
+
   if (mouseX>rect18X && mouseX<rect18X+rect18Width && mouseY>rect18Y && mouseY<rect18Y+rect18Height) {
     rect(clearDrawingSurfaceX, clearDrawingSurfaceY, clearDrawingSurfaceWidth, clearDrawingSurfaceHeight);
     Picture1();
@@ -209,10 +269,32 @@ void mousePressed() {
   if (mouseX>rect16X && mouseX<rect16X+rect16Width && mouseY>rect16Y && mouseY<rect16Y+rect16Height) {
     rect(clearDrawingSurfaceX, clearDrawingSurfaceY, clearDrawingSurfaceWidth, clearDrawingSurfaceHeight);
   }
+  //
+   if (mouseX>playButtonX && mouseX<playButtonX+playButtonWidth && mouseY>playButtonY && mouseY<playButtonY+playButtonHeight ) {
+    if ( song[currentSong].isPlaying() ) {
+      song[0].pause();
+    } else if (song[currentSong].position() == song[currentSong].length()) {
+      song[currentSong].rewind();
+      song[currentSong].play();
+    } else {
+      song[currentSong].play();
+    }
+  }
 }
 
 void keyPressed() {
   if (key == 'q' || key == 'Q') { 
     exit();
+  }
+  //
+  if (key == ' ' || key == ' ') {
+    if ( song[currentSong].isPlaying() ) {
+      song[0].pause();
+    } else if (song[currentSong].position() == song[currentSong].length()) {
+      song[currentSong].rewind();
+      song[currentSong].play();
+    } else {
+      song[currentSong].play();
+    }
   }
 }

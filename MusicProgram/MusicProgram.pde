@@ -78,7 +78,7 @@ void draw () {
 }
 
 void keyPressed() {
-  
+
   if (key == 'n' || key == 'N') { //Next Button to Console
     if (song[currentSong].isPlaying()) {
       song[currentSong].pause();
@@ -105,7 +105,7 @@ void keyPressed() {
     }
   }
   //
-   if (key == 'p' || key == 'P') { //Next Button to Console
+  if (key == 'p' || key == 'P') { //Next Button to Console
     if (song[currentSong].isPlaying()) {
       song[currentSong].pause();
       song[currentSong].rewind();

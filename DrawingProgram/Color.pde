@@ -24,7 +24,6 @@ void Color() {
   ellipse(ellipse2X, ellipse2Y, ellipse2Width, ellipse2Height);
   fill(black);
   triangle(triX1, triY1, triX2, triY2, triX3, triY3);
-  triangle(tri2X1, tri2Y1, tri2X2, tri2Y2, tri2X3, tri2Y3);
   noFill();
   noStroke();
   rect(rect18X, rect18Y, rect18Width, rect18Height);

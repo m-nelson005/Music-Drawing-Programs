@@ -6,11 +6,11 @@ void Images() {
 
   //
   titleFont = createFont ("Harrington", 55);
-  rect(width*7.25/40, height*8.6/10, width*6/40, height*1/16);
+  rect(width*7.25/40, height*8.2/10, width*6/40, height*1/16);
   fill(black2); 
   textAlign (CENTER, CENTER); 
   textFont(titleFont, 30);
-  text(title4, width*7.25/40, height*8.6/10, width*6/40, height*1/16);
+  text(title4, width*7.25/40, height*8.2/10, width*6/40, height*1/16);
   fill(255);
   //
   titleFont = createFont ("Harrington", 55);
